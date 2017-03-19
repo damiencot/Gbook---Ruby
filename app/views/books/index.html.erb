@@ -1,0 +1,38 @@
+<% content_for :tab, :books %>
+<% content_for :content do %>
+<h1>Gérer mes livres</h1>
+
+<p class="text-right">
+  <a href="<%= new_book_path %>" class="btn btn-primary">Ajouter un livre</a>
+</p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Avatar</th>
+    <th>Nom</th>
+    <th>Publication</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @books.each do |book| %>
+      <tr>
+        <td><%= image_tag book.avatar_url %></td>
+        <td><%= book.name %></td>
+        <td><%= book.publication %></td>
+        <td><%= book.type.name %></td>
+        <td>
+          <%= link_to 'Voir', book, class: 'btn btn-default' %>
+          <%= link_to 'Editer', [:edit, book], class: 'btn btn-primary' %>
+          <%= link_to 'Supprimer', book , class: 'btn btn-danger' , data: {method: :delete, confirm: 'Voulez vous vraiment supprimer ce livre ?'}%>
+        </td>
+      </tr>
+
+  <% end %>
+  </tbody>
+</table>
+
+<% end %>
+
+
+<%= render template: 'layouts/profile' %>
