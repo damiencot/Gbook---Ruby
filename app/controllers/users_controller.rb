@@ -19,7 +19,6 @@ class UsersController < ApplicationController
       @user.save
       UserMailer.confirm(@user).deliver_now
       redirect_to new_user_path, success: 'Votre compte a bien été crée, vous devriez recevoir un email pour confirmer votre compte'
-      render 'new'
     else
       render 'new'
     end
@@ -46,7 +45,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    user_params = params.require(:user).permit(:username, :firstname, :lastname, :avatar_file, :email)
+    user_params = params.require(:user).permit(:username, :firstname, :lastname, :avatar, :email)
     if @user.update(user_params)
       redirect_to profil_path, success: 'Votre compte a bien été mis à jour'
     else

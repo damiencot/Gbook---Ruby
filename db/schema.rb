@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319095137) do
+ActiveRecord::Schema.define(version: 20170323092508) do
 
-  create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.date     "publication"
     t.integer  "user_id"
@@ -23,7 +23,17 @@ ActiveRecord::Schema.define(version: 20170319095137) do
     t.index ["user_id"], name: "index_books_on_user_id", using: :btree
   end
 
-  create_table "types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.text     "content",    limit: 65535
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "image"
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+  end
+
+  create_table "types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "slug"
     t.integer  "books_count"
@@ -31,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170319095137) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "username"
     t.string   "email"
     t.boolean  "confirmed",          default: false
@@ -39,7 +49,7 @@ ActiveRecord::Schema.define(version: 20170319095137) do
     t.string   "password_digest"
     t.string   "firstname"
     t.string   "lastname"
-    t.boolean  "avatar",             default: false
+    t.string   "avatar"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.string   "recover_password"
@@ -47,4 +57,5 @@ ActiveRecord::Schema.define(version: 20170319095137) do
 
   add_foreign_key "books", "types"
   add_foreign_key "books", "users"
+  add_foreign_key "posts", "users"
 end

@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :password_digest
       t.string :firstname
       t.string :lastname
-      t.boolean :avatar, default: false
+      t.string :avatar
 
       t.timestamps
     end

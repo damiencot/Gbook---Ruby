@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :posts
   root to: 'users#new'
 
   get '/profil', to: 'users#edit', as: :profil

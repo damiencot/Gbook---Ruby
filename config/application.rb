@@ -13,7 +13,7 @@ module Gbook
         name: 'Gbook'
     }
 
-    # On précise à la génération d'un controller qu'on ne veut pas de certain fonctionaliste
+    # Je suis ouvert à une baisse de prix, je vous propose 170 au lieu de 190, qu'en pensez-vous ?
     config.generators do |g|
       g.assets false
       g.helper false

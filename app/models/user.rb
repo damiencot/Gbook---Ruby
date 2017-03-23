@@ -2,7 +2,8 @@ class User < ApplicationRecord
 
 
 
-  has_many :books
+  has_many :books, dependent: :destroy # Un utilisateurs a plusieurs livres et la suppression est lier aussi a posts
+  has_many :posts, dependent: :destroy # Un utilisateurs a plusieurs photos
 
 
   has_secure_password
@@ -11,7 +12,10 @@ class User < ApplicationRecord
   has_secure_token :recover_password
 
 
-  has_image :avatar
+  #has_image :avatar
+  mount_uploader :avatar, AvatarUploader
+  validates :avatar, presence: true, on: :create
+
 
 
 

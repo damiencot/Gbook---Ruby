@@ -8,6 +8,9 @@ end
 # Traitement des images
 gem 'mini_magick', '~> 4.6', '>= 4.6.1'
 
+# Traitement des Uploads
+gem 'carrierwave', '~> 1.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use mysql as the database for Active Record
