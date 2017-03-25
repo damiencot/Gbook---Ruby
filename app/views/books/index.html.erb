@@ -17,7 +17,7 @@
   <tbody>
   <% @books.each do |book| %>
       <tr>
-        <td><%= image_tag book.avatar_url %></td>
+        <td><%= image_tag book.cover %></td>
         <td><%= book.name %></td>
         <td><%= book.publication %></td>
         <td><%= book.type.name %></td>

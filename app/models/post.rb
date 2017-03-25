@@ -11,7 +11,7 @@ class Post < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  validates :name, :content, presence: true
+  validates :name, :content, :book_ids, presence: true
   validates :image, presence: true, on: :create
 
 end

@@ -20,6 +20,14 @@
       <%= f.label :image, 'Image', class: 'col-md-4 control-label' %>
       <div class="col-md-8">
         <%= f.file_field :image, class: 'form-control' %>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :book_ids, 'Livres', class: 'col-md-4 control-label' %>
+      <div class="col-md-8">
+        <%= f.select :book_ids, Book.pluck(:name, :id), {}, multiple: true, class: 'form-control' %>
       </div>
     </div>
 

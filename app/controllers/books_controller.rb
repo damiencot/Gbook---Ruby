@@ -12,7 +12,7 @@ class BooksController < ApplicationController
 
   def create
     @book = current_user.books.new(book_params)
-    if@book.save
+    if @book.save
       redirect_to books_path, success: 'Votre livre a bien été crée'
     else
       render :new
@@ -38,7 +38,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:name,:publication, :type_id, :avatar_file)
+    params.require(:book).permit(:name,:publication, :type_id, :cover)
   end
 
   def set_book

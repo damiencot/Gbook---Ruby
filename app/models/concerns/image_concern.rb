@@ -1,3 +1,4 @@
+=begin
 module ImageConcern
 
   extend ActiveSupport::Concern
@@ -82,3 +83,5 @@ module ImageConcern
   end
 
 end
+
+=end

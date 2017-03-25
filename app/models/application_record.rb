@@ -1,6 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
 
-  include ImageConcern
+  # include ImageConcern
 
   self.abstract_class = true
 

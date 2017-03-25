@@ -64,6 +64,8 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name, :content, :image)
+      b = params.require(:post).permit(:name, :content, :image, book_ids: [])
+      b[:book_ids] = current_user.books.where(id: b[:book_ids]).pluck(:id)
+      b
     end
 end
