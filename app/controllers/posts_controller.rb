@@ -1,15 +1,31 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
+  skip_before_action :only_signed_in, only: [:types, :index, :show]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    book_ids = current_user.followed_books.pluck(:id)
+    if book_ids.empty?
+      @posts = []
+    else
+      @posts = Post.joins('INNER JOIN books_posts ON books_posts.post_id = posts.id').where("books_posts.book_id IN (#{book_ids.join(',')})")
+    end
+  end
+
+  def types
+    @types = Type.find_by_slug!(params[:slug])
+    @posts = Post.joins(:books).where(books: {type_id: @types.id})
+  end
+
+  def me
+    @posts = current_user.posts.all
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
   end
 
   # GET /posts/new

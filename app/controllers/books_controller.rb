@@ -1,6 +1,11 @@
 class BooksController < ApplicationController
 
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:edit, :update, :destroy]
+  skip_before_action :only_signed_in, only: [:show]
+
+  def show
+    @book = Book.find(params[:id])
+  end
 
   def index
     @books = current_user.books

@@ -1,18 +1,24 @@
 class Book < ApplicationRecord
   belongs_to :user
   belongs_to :type, counter_cache: true
+  has_many :subscriptions
+  has_many :subscribers, through: :subscriptions, source: :user
 
 
   validates :name, :publication, presence: true
   validates :cover, presence: true, on: :create
 
 
-  # has_image :book
   mount_uploader :cover, CoverUploader
   has_and_belongs_to_many :posts
 
   after_destroy :destroy_posts
 
+
+  def followedBy?(user)
+    #
+    subscriptions.where(user_id: user.id).count > 0 if user.respond_to? :id
+  end
 
   private
 

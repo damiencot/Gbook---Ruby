@@ -5,6 +5,10 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy # Un utilisateurs a plusieurs livres et la suppression est lier aussi a posts
   has_many :posts, dependent: :destroy # Un utilisateurs a plusieurs photos
 
+  # Les utilisateurs sont associés à plusieurs livres
+  has_many :subscriptions
+  has_many :followed_books, through: :subscriptions, source: :book
+
 
   has_secure_password
   # Génération d'un Token aléatoire

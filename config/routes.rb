@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :posts
-  root to: 'users#new'
+  get 'pages/index'
+
+  root to: 'pages#index'
 
   get '/profil', to: 'users#edit', as: :profil
+  get '/livres/:slug', to: 'posts#types', as: :types_posts
   patch '/profil', to: 'users#update'
 
   # Session
@@ -11,8 +13,16 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: :destroy_session
 
+
+  resources :posts do
+    collection do
+      get'me'
+    end
+  end
   resources :passwords, only: [:new, :create, :edit, :update]
-  resources :books
+  resources :books do
+    resource :subscriptions, only: [:create, :destroy]
+  end
   resources :users, only: [:new, :create] do
     # Pour les membres, je veux que tu crée une route
     member do

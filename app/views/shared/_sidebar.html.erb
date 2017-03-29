@@ -1,0 +1,11 @@
+<h4>Filtrer</h4>
+<div class="list-group">
+  <% Type.all.each do |types| %>
+      <%= link_to types.name, types_posts_path(slug: types.slug), class: 'list-group-item' %>
+  <% end %>
+</div>
+
+<h4>Nouveaux venus</h4>
+<div class="list-group">
+  <%= render Book.limit(4) %>
+</div>

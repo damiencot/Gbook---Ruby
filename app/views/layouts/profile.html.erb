@@ -4,7 +4,8 @@
   </div>
   <div class="col-md-4">
     <div class="list-group">
-      <a href="<%= posts_path %>" class="list-group-item<%= yield(:tab) == 'posts' ? ' active' : '' %>">Mes photos</a>
+      <a href="<%= posts_path %>" class="list-group-item<%= yield(:tab) == 'posts' ? ' active' : '' %>">Mes livres suivis</a>
+      <a href="<%= me_posts_path %>" class="list-group-item<%= yield(:tab) == 'me' ? ' active' : '' %>">Mes photos</a>
       <a href="<%= books_path %>" class="list-group-item<%= yield(:tab) == 'books' ? ' active' : '' %>">Mes Livres</a>
       <a href="<%= profil_path %>" class="list-group-item<%= yield(:tab) == 'profil' ? ' active' : '' %>">Mon compte</a>
     </div>
