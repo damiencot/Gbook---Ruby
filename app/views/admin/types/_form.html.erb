@@ -1,0 +1,35 @@
+<%= form_for type, url: [:admin, type], html: {class: 'form-horizontal'} do |f| %>
+
+    <% if type.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% type.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :name, "Nom", class: 'col-md-4 control-label' %>
+      <div class="col-md-8">
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :slug, "URL", class: 'col-md-4 control-label' %>
+      <div class="col-md-8">
+        <%= f.text_field :slug, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-4 col-md-6">
+        <button type="submit" class="btn btn-primary">
+          <%= type.new_record? ? 'Créer' : 'Modifier' %>
+        </button>
+      </div>
+    </div>
+
+<% end %>

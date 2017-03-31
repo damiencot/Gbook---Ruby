@@ -15,6 +15,13 @@
       <div class="navbar-header">
         <a href="<%= root_path %>" class="navbar-brand">Gbook</a>
       </div>
+      <% if isAdmin? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to 'Gestion des types', [:admin, Type] %>
+          </li>
+        </ul>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
             <li class="dropdown">

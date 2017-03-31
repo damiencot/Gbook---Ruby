@@ -31,4 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
+  scope 'superadmin', module: 'admin', as: 'admin' do
+    resources :types, except: [:show]
+  end
 end

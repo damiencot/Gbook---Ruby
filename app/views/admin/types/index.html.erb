@@ -1,0 +1,27 @@
+<h1>Gérer les Types</h1>
+
+<p class="text-right">
+  <%= link_to 'Ajouter un type', {action: :new}, class: 'btn btn-primary' %>
+</p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Nom</th>
+    <th>slug</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @types.each do |types| %>
+      <tr>
+        <td><%= types.name %></td>
+        <td><%= types.slug %></td>
+        <td>
+          <%= link_to 'Editer', [:edit, :admin, types], class: 'btn btn-primary' %>
+          <%= link_to 'Supprimer', [:admin, types], class: 'btn btn-danger', data: {method: :delete, confirm: 'Voulez vous vraiment supprimer cet animal ?'} %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
